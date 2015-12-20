@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<strong>Name:</strong>
+	<%= @user.name %>
+</p>
+
+<p>
+	<strong>Email:</strong>
+	<%= @user.email %>
+</p>
+
+<% if @user.posts.count > 0 %>
+	<p>
+		<strong>Posts:</strong>
+		<% @user.posts.each do |post| %>
+			<h4><%= post.title %></h4>
+			<p><%= post.body %></p>
+		<% end %>
+	</p>
+<% end %>
+
+<% if @user == current_user %>
+	<%= link_to 'Add a new post', new_user_post_path(@user, @post) %>
+<% end %>
+
+<hr>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
