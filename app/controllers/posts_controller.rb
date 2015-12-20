@@ -14,8 +14,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @user
-    @post = Post.new
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new
   end
 
   # GET /posts/1/edit
@@ -25,8 +25,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @user
-    @post = Post.new(post_params)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new(post_params)
 
       if @post.save
         redirect_to user_path(@user)
